@@ -1,24 +1,26 @@
 USE [SSISDB]
 GO
 
+TRUNCATE TABLE [internal].[event_message_context]
+
 ALTER TABLE [internal].[event_message_context] 
 DROP CONSTRAINT [FK_EventMessageContext_EventMessageId_EventMessages]
-        
+Â  Â  Â  Â  
 TRUNCATE TABLE internal.event_messages
-        
-ALTER TABLE [internal].[event_message_context]  
-WITH CHECK ADD  CONSTRAINT [FK_EventMessageContext_EventMessageId_EventMessages] 
+Â  Â  Â  Â  
+ALTER TABLE [internal].[event_message_context] Â 
+WITH CHECK ADD Â CONSTRAINT [FK_EventMessageContext_EventMessageId_EventMessages] 
 FOREIGN KEY([event_message_id])
 REFERENCES [internal].[event_messages] ([event_message_id])
 ON DELETE CASCADE
- 
+Â 
 ALTER TABLE [internal].[event_messages] 
 DROP CONSTRAINT [FK_EventMessages_OperationMessageId_OperationMessage]
-        
+Â  Â  Â  Â  
 TRUNCATE TABLE [internal].[operation_messages]
- 
-ALTER TABLE [internal].[event_messages]  
-WITH CHECK ADD  CONSTRAINT [FK_EventMessages_OperationMessageId_OperationMessage] 
+Â 
+ALTER TABLE [internal].[event_messages] Â 
+WITH CHECK ADD Â CONSTRAINT [FK_EventMessages_OperationMessageId_OperationMessage] 
 FOREIGN KEY([event_message_id])
 REFERENCES [internal].[operation_messages] ([operation_message_id])
 ON DELETE CASCADE
